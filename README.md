@@ -234,4 +234,18 @@ docker compose up -d
 
 Run without `--build`, so compose uses the pulled images instead of building from source. MongoDB is pulled automatically. Visit `http://localhost:3000` (or `http://<instance-public-ip>:3000`).
 
+## View the volume on disk
+
+Docker stores named volumes (like `mongo-data`) under `/var/lib/docker/volumes/`, which needs root access to browse:
+
+```bash
+sudo -i
+cd /var/lib/docker
+ls
+cd volumes
+ls
+```
+
+Look for a folder named `docker_mongo-data` (or `<project-folder-name>_mongo-data`) — that's where MongoDB's actual data files live on the host, outside any container.
+
 # docker_I
