@@ -248,4 +248,10 @@ ls
 
 Look for a folder named `docker_mongo-data` (or `<project-folder-name>_mongo-data`) — that's where MongoDB's actual data files live on the host, outside any container.
 
+```bash
+exit
+```
+
+Leaves the root shell opened by `sudo -i`, back to your normal user.
+
 # docker_I
