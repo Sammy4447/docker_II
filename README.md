@@ -107,6 +107,19 @@ docker/
     └── models/Review.js
 ```
 
+## Why multiple containers?
+
+Instead of putting the frontend, backend, and database into a single container, each one gets its own:
+
+- **Separation of concerns** — one container = one process/responsibility (nginx serving the site, Express serving the API, MongoDB storing data). Easier to reason about, debug, and update.
+- **Independent scaling** — if traffic grows, you can scale just the backend (run more `momo-backend` replicas) without touching the frontend or database.
+- **Independent rebuilds/restarts** — a code change in `frontend/` only rebuilds/restarts the `momo-frontend` container; `momo-backend` and `momo-mongo` keep running untouched, so data and connections aren't disrupted.
+- **Reusable, official images** — MongoDB is pulled as-is from Docker Hub instead of being built and maintained by us, since it already ships as a well-tested official image.
+- **Isolation and security** — the backend and database aren't exposed to the host or the internet at all; only the frontend is published on port `3000`. Containers reach each other only over the internal Docker network compose creates.
+- **Matches how the app actually works** — the three pieces are already separate processes talking over the network (HTTP calls, MongoDB wire protocol), so giving each its own container just mirrors that natural boundary instead of forcing them to share one filesystem/process space.
+
+`docker-compose.yml` ties these separate containers together — defining how they're built, what ports they expose, and how they find each other by service name — so the whole stack still starts/stops with one command.
+
 ## Full-stack deployment (docker compose)
 
 The app runs as three containers, all started with one command:

@@ -1,31 +1,41 @@
 services:
   mongo:
     image: mongo:7
+    # official MongoDB image, pulled as-is — no need to build/maintain our own
     container_name: momo-mongo
     volumes:
       - mongo-data:/data/db
+      # persists data on the host via a named volume, so reviews survive "docker compose down"
     restart: unless-stopped
+    # auto-restarts the container if it crashes or the host reboots (but not if we stop it manually)
 
   backend:
     build: ./backend
+    # builds the image from backend/Dockerfile instead of pulling one
     image: momo-backend
     container_name: momo-backend
     environment:
       - MONGO_URL=mongodb://mongo:27017/momo
+      # "mongo" here is the service name above — Docker's internal DNS resolves it to that container's IP
       - PORT=5000
     depends_on:
       - mongo
+      # only controls start order (mongo starts first), doesn't wait for mongo to be "ready"
     restart: unless-stopped
+    # no "ports:" here — backend is reachable only from other containers on the compose network, not from the host
 
   frontend:
     build: ./frontend
+    # builds the image from frontend/Dockerfile (multi-stage: build React, then serve with nginx)
     image: momo-frontend
     container_name: momo-frontend
     ports:
       - "3000:80"
+      # publishes container port 80 (nginx) as port 3000 on the host — the only service exposed outside Docker
     depends_on:
       - backend
     restart: unless-stopped
 
 volumes:
   mongo-data:
+    # named volume managed by Docker; lives outside the container's filesystem so it isn't lost on rebuild/removal
