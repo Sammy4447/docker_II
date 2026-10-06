@@ -30,8 +30,8 @@ services:
     image: momo-frontend
     container_name: momo-frontend
     ports:
-      - "3000:80"
-      # publishes container port 80 (nginx) as port 3000 on the host — the only service exposed outside Docker
+      - "80:80"
+      # publishes container port 80 (nginx) as port 80 on the host — the only service exposed outside Docker
     depends_on:
       - backend
     restart: unless-stopped

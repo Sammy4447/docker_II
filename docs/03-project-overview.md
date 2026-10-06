@@ -10,7 +10,7 @@ The app is a review site with three parts. Each part runs in its own container:
 
 | Container | Role | Port |
 |---|---|---|
-| `momo-frontend` | nginx serves the built React site and forwards `/api/*` requests to the backend | `3000` on the host → `80` in the container |
+| `momo-frontend` | nginx serves the built React site and forwards `/api/*` requests to the backend | `80` on the host → `80` in the container |
 | `momo-backend` | Express API: `GET /api/reviews` lists reviews, `POST /api/reviews` saves one (`name` + `review`) | Internal only (`5000`) |
 | `momo-mongo` | MongoDB database (official `mongo:7` image) that stores the reviews | Internal only (`27017`) |
 
@@ -45,7 +45,7 @@ The frontend, backend, and database each get their own container instead of shar
 - **Independent scaling:** if traffic grows, you can scale only the backend without touching the frontend or the database.
 - **Independent rebuilds and restarts:** a change in `frontend/` rebuilds and restarts only `momo-frontend`. The backend and database keep running, so data and connections are not disrupted.
 - **Reusable official images:** MongoDB is pulled as-is from Docker Hub, so we don't have to build and maintain our own image.
-- **Isolation and security:** the backend and database are never exposed to the host or the internet. Only the frontend is published, on port `3000`.
+- **Isolation and security:** the backend and database are never exposed to the host or the internet. Only the frontend is published, on port `80`.
 - **Matches how the app works:** the three parts are already separate processes that talk over the network (HTTP and the MongoDB wire protocol). Separate containers follow that same boundary.
 
 `docker-compose.yml` ties these containers together. It defines how they are built, which ports they expose, and how they find each other, so the whole stack starts and stops with a single command.

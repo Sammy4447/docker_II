@@ -8,7 +8,7 @@ Follow these in order:
 
 | # | Guide | What it covers |
 |---|---|---|
-| 01 | [Create an EC2 Instance](docs/01-create-ec2-instance.md) | Launch an Ubuntu server on AWS and open port 3000 |
+| 01 | [Create an EC2 Instance](docs/01-create-ec2-instance.md) | Launch an Ubuntu server on AWS and open port 80 (HTTP) |
 | 02 | [SSH and Install Docker](docs/02-ssh-and-install-docker.md) | Connect to the server, install Docker and Compose, run Docker without `sudo` |
 | 03 | [Project Overview](docs/03-project-overview.md) | Architecture, folder structure, and why the app uses multiple containers |
 | 04 | [Run with Docker Compose](docs/04-run-with-docker-compose.md) | Build and start the stack, check logs, inspect MongoDB |
@@ -22,7 +22,7 @@ Follow these in order:
 docker compose up -d --build
 ```
 
-Then open `http://localhost:3000` (or `http://<instance-public-ip>:3000` on EC2).
+Then open `http://localhost` (or `http://<instance-public-ip>` on EC2).
 
 ## Command Cheat Sheet
 

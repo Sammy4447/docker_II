@@ -43,7 +43,7 @@ docker compose up -d
 
 Run **without** `--build`, so Compose uses the pulled images instead of building from source. MongoDB is pulled automatically.
 
-Open `http://localhost:3000` (or `http://<instance-public-ip>:3000`).
+Open `http://localhost` (or `http://<instance-public-ip>`).
 
 ---
 

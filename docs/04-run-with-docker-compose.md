@@ -29,8 +29,8 @@ docker compose up -d --build
 
 ## Open the App
 
-- **Locally:** `http://localhost:3000`
-- **On EC2:** `http://<instance-public-ip>:3000`
+- **Locally:** `http://localhost`
+- **On EC2:** `http://<instance-public-ip>`
 
 Scroll down to the **Reviews** section and post a review.
 
