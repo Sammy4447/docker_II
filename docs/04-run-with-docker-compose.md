@@ -2,6 +2,17 @@
 
 Build and start the full stack (frontend, backend, and MongoDB) with a single command.
 
+## Get the Project onto the Server
+
+On the EC2 instance, clone the repository and move into it:
+
+```bash
+git clone https://github.com/Sammy4447/docker_II.git
+cd docker_II
+```
+
+> Git comes preinstalled on the Ubuntu AMI. If `git` is not found, install it with `sudo apt install git`.
+
 ## Start Everything
 
 From the project root (where `docker-compose.yml` is located):
