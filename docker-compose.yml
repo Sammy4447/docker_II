@@ -32,6 +32,7 @@ services:
     ports:
       - "80:80"
       # publishes container port 80 (nginx) as port 80 on the host — the only service exposed outside Docker
+      # if the host port were 3000 instead ("3000:80"), the URL would be http://localhost:3000
     depends_on:
       - backend
     restart: unless-stopped

@@ -33,3 +33,8 @@ EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
 # starts nginx in the foreground (daemon off) so the container keeps running instead of exiting immediately
+
+# Core concept:
+# Stage 1 = build the app (Node compiles the React source into static files)
+# Stage 2 = serve the app (nginx serves only those built files)
+# This is why it is called a multi-stage Docker build
