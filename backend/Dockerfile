@@ -9,7 +9,7 @@ COPY package.json ./
 # where only server.js/other source changed, not package.json
 
 RUN npm install --omit=dev
-# a production backend usually needs packages like express and mongoose, but not development tools like jest or nodemon
+# a production backend usually needs packages like express and mongoose, but not development tools like jest or nodemon (not installing dev dependencies)
 
 COPY . .
 # copy the rest of the backend source code (server.js, models/, etc.) into /app

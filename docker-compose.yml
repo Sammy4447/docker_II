@@ -1,7 +1,8 @@
-services:
+services: 
+#containers to be run
   mongo:
     image: mongo:7
-    # official MongoDB image, pulled as-is — no need to build/maintain our own
+    # official MongoDB image, pulled as-is — no need to build/maintain our own (ready to run application)
     container_name: momo-mongo
     volumes:
       - mongo-data:/data/db

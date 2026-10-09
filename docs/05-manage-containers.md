@@ -45,6 +45,16 @@ docker compose up -d --build
 
 Only the changed services are rebuilt and restarted. Data in MongoDB is not affected.
 
+## Extra Command
+
+If you need 3 containers of the backend:
+
+```bash
+docker compose up --build -d --scale backend=3
+```
+
+> For learning only, no need to run it. It works only after removing `container_name: momo-backend` from `docker-compose.yml`, because every container needs a unique name.
+
 ---
 
 **Previous:** [04 — Run with Docker Compose](04-run-with-docker-compose.md) · **Next:** [06 — Docker Hub](06-docker-hub.md)
